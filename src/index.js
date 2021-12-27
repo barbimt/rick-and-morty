@@ -23,7 +23,7 @@ function CharacterCard(props) {
 
 class App extends React.Component {
   state = {
-    loading: true, //cuando la app empieza, comienza buscando los datos, esto es como se incializa la app
+    loading: true,
     error: null,
     data: {
       info: {},
@@ -36,18 +36,15 @@ class App extends React.Component {
     this.fetchCharacters();
   }
 
-  //no me regresa los datos, es una respuesta, y a esa respuesta si le puedo sacar los datos, usando response.json, esto es otra función asíncrona, asi q hay q esperarla.
   fetchCharacters = async () => {
-    this.setState({ loading: true, error: null }); //quiere decir q estamos cargando datos, comenzamos ocn loading true y no hay error
+    this.setState({ loading: true, error: null });
 
-    //esta petición la vamos a intentar, si falla, capturamos el error.
     try {
       const response = await fetch(
         `https://rickandmortyapi.com/api/character/?page=${this.state.nextPage}`
       );
       const data = await response.json();
 
-      //a los datos los queremos guardar, asi que lo guardamos en el estado de este componente.
       this.setState({
         loading: false,
         data: {
@@ -88,7 +85,7 @@ class App extends React.Component {
           )}
         </div>
       </div>
-    ); //boton ver más, para cuando no esté el loading en la app,
+    );
   }
 }
 
